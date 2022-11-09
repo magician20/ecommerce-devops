@@ -13,14 +13,14 @@
             index="ecommerce_api_dev"
             type="raw"
             source="http-even-logs"
-            sourcetype="log4j"
+            sourcetype="_json"
             messageFormat="text"
             disableCertificateValidation="true">
             <PatternLayout pattern="%m" />
         </SplunkHttp>
 
     </Appenders>
-
+    <!-- Define a logger named 'testSplunkLog4j' which writes to the socket appender we defined above. -->
     <Loggers>
         <!-- LOG everything at INFO level -->
         <Root level="info">
@@ -29,7 +29,6 @@
         </Root>
     </Loggers>
 </Configuration>
-
 <!-- <?xml version="1.0" encoding="UTF-8"?>
    // https://howtodoinjava.com/log4j2/log4j2-xml-configuration-example/
 <Configuration status="WARN">
@@ -53,7 +52,7 @@
             index="ecommerce_api_dev"
             type="raw"
             source="http-even-logs"
-            sourcetype="log4j"
+            sourcetype="_json"
             messageFormat="text"
             disableCertificateValidation="true">
             <PatternLayout pattern="%m" />
