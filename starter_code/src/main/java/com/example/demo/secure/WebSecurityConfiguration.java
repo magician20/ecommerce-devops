@@ -31,15 +31,17 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         .antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL).permitAll()
         .anyRequest().authenticated()
         .and()
-        .addFilter(new JWTAuthenticationFilter(authenticationManager()))
-        .addFilter(new JWTAuthenticationVerficationFilter(authenticationManager()))
+        .addFilter(new JWTAuthenticationFilter(authenticationManagerBean()))
+        .addFilter(new JWTAuthenticationVerficationFilter(authenticationManagerBean()))
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
+
     @Bean
     @Override
-    protected AuthenticationManager authenticationManager() throws Exception {
+    public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.parentAuthenticationManager(authenticationManagerBean())
